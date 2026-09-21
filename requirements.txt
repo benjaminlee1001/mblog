@@ -1,5 +1,6 @@
 asgiref==3.12.1
 Django==4.2.30
+Markdown==3.10.3
 pip==25.1.1
 sqlparse==0.6.0
 tzdata==2026.4

@@ -1,12 +1,27 @@
 {% extends 'base.html' %}
+{% load markdown_extras %}
 {% block title %}歡迎光臨我的部落格{% endblock %}
 {% block headmessage %}
     <h3 style='font-family:標楷體;'>本站文章列表</h3>
 {% endblock %}
 {% block content %}
     {% for post in posts %}
-        <p style='font-family:微軟正黑體;font-size:14pt;font-weight:bold;'>
-            <a href='/post/{{ post.slug }}/'>{{ post.title }}</a>
-        </p>
+        <div class='card'>
+            <div class='card-header'>
+                <p style='font-family:微軟正黑體;font-size:14pt;font-weight:bold;'>
+                    <a href='/post/{{ post.slug }}/'>{{ post.title }}</a>
+                </p>
+            </div>
+            <div class='card-body' style='background-color:#ffffdd'>
+                {{ post.body | convert_markdown | truncatechars_html:80 | safe }}
+            </div>
+            <div class='card-footer' style='background-color:#efefef'>
+                發佈時間：{{ post.pub_date | date:"Y-m-d H:i" }}
+            </div>
+        </div>
+        <br>
     {% endfor %}
+    <div style='text-align:center;'>
+        <a href="http://s01.flagcounter.com/more/SwM"><img src="https://s01.flagcounter.com/count2/SwM/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+    </div>
 {% endblock %}
